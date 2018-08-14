@@ -1,6 +1,7 @@
 services:
     apache:
         image: tugboatqa/httpd
+        aliases: ['test1', 'test2']
         commands:
             init: ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
             build: cat .tugboat/tugboat.txt
