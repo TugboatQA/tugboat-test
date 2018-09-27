@@ -1,6 +1,8 @@
 services:
     apache:
         image: tugboatqa/httpd
-        commands:
-            init: ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-            build: cat .tugboat/tugboat.txt
+        default: true
+
+    nginx:
+        image: tugboatqa/nginx
+        expose: 80
