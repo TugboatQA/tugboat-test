@@ -7,7 +7,6 @@ services:
 
     apache:
         image: tugboatqa/httpd
-        expose: 80
 
     nginx:
         image: tugboatqa/nginx
