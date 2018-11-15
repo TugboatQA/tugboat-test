@@ -11,4 +11,3 @@ services:
 
     nginx:
         image: tugboatqa/nginx
-        expose: 80
