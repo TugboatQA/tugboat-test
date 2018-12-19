@@ -2,6 +2,8 @@ services:
     default:
         image: tugboatqa/httpd
         default: true
+        http: true
+        https: false
         commands:
             init: ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
 
