@@ -18,3 +18,5 @@ services:
                 - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt
+
+        visualdiffs: /
