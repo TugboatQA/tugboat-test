@@ -6,6 +6,10 @@ services:
     https: false
     urls:
       - /
+      - /about
+      - /info
+      - /chickens
+      - /boats
     commands:
       init:
         - echo "********** INIT **********"
