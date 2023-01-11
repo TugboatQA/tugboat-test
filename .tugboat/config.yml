@@ -1,20 +1,8 @@
 services:
-    apache:
-        image: tugboatqa/httpd
-        aliases: test
+    php:
+        image: tugboatqa/php:apache
         http: true
         https: false
         commands:
             init:
-                - echo "********** INIT **********"
-                - apt-get update
-                - apt-get install bsd-mailx
-                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-            update:
-                - echo "********** UPDATE **********"
-            build:
-                - echo "********** BUILD **********"
-                - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt
