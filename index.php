@@ -5,5 +5,6 @@
     </head>
     <body>
         <img src="logo.svg" alt="Tugboat Logo">
+        <h4><?php print date('Y-m-d H:i:s') ?></h4>
     </body>
 </html>

@@ -1,24 +1,7 @@
 services:
     php:
-        image: tugboatqa/php:fpm
+        image: tugboatqa/php-nginx:8.2-fpm
         default: true
         commands:
             init:
-                # Install nginx
-                - apt-get update
-                - apt-get install nginx
-
-                # Configure nginx
-                - rm -rf /usr/share/nginx/html
-                - ln -snf "${TUGBOAT_ROOT}" /usr/share/nginx/html
-                - cp .tugboat/nginx.vhost /etc/nginx/sites-available/default
-
-                # Create/Start nginx service
-                - mkdir -p /etc/service/nginx
-                - cp .tugboat/nginx.run /etc/service/nginx/run
-                - chmod +x /etc/service/nginx/run
-
-                # Clean up apt artifacts to keep the Preview small
-                - apt-get clean
-                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+                - ln -snf "$TUGBOAT_ROOT" "$DOCROOT"
