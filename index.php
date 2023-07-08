@@ -4,7 +4,6 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <img src="logo.svg" alt="Tugboat Logo">
-        <h4><?php print date('Y-m-d H:i:s') ?></h4>
+        <h1>Nginx and PHP FPM (<?php print phpversion(); ?>)</h1>
     </body>
 </html>

@@ -3,9 +3,16 @@ body {
     text-align: center;
 }
 
-img {
-    width: 75%;
-    position: relative;
+h1 {
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 5.9vw;
+    text-align: center;
+    vertical-align: top;
+    position: absolute;
     top: 50%;
-    transform: translateY(-75%);
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
 }
