@@ -11,6 +11,11 @@ services:
                 - apt-get install bsd-mailx
                 - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+                - echo "alias ll='ls -la'" >> /root/.bashrc
+                - echo "export PATH=$PATH:${TUGBOAT_ROOT}" >> /root/.bashrc
+                - echo "#!/bin/sh" > "${TUGBOAT_ROOT}/hello-world"
+                - echo "echo 'hello world'" >> "${TUGBOAT_ROOT}/hello-world"
+                - chmod +x hello-world
             update:
                 - echo "********** UPDATE **********"
             build:
