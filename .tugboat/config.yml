@@ -18,11 +18,4 @@ services:
                 - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt
-                - |
-                    if ! grep -q x-tub-goat /usr/local/apache2/conf/httpd.conf; then
-                        tubgoats=$(printf 'tubgoat-%.0s' {1..10000})
-                        header='Header add x-tub-goat "'$tubgoats'"'
-                        match='<Directory\ "/usr/local/apache2/htdocs">'
-                        instruction=$(printf 's@%s@&\\n\\t%s@' "$match" "$header")
-                        sed -e "$instruction" -i /usr/local/apache2/conf/httpd.conf
-                    fi
+                - .tugboat/add-header.sh
