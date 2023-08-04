@@ -4,6 +4,7 @@ services:
         aliases: test
         http: true
         https: false
+        subpath: true
         commands:
             init:
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
