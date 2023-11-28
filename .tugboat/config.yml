@@ -6,3 +6,14 @@ services:
         commands:
             init:
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+        urls:
+            alias0:
+              - url: /
+                visualdiff:
+                    threshold:
+                        desktop: 90
+                        mobile: 95
+                        tablet: 99
+                    waitUntil:
+                      - load
+                      - networkidle0
