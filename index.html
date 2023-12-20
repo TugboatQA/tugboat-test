@@ -14,7 +14,7 @@
     const paramList = document.querySelector("#params");
     const parsedURL = new URL(window.location.href);
 
-    for (const [key, value] of parsedURL.entries()) {
+    for (const [key, value] of parsedURL.searchParams.entries()) {
       const item = document.createElement("li");
       item.appendChild(document.createTextNode(`${key}: ${value}`));
       paramList.appendChild(item);
