@@ -1,9 +1,23 @@
 <html>
-    <head>
-        <title>Tugboat Test Page</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <img src="logo.svg" alt="Tugboat Logo">
-    </body>
+  <head>
+    <title>Tugboat Test Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <img src="logo.svg" alt="Tugboat Logo" />
+    <div>
+      <h2>Query Parameters</h2>
+      <ul id="params"></ul>
+    </div>
+  </body>
+  <script>
+    const paramList = document.querySelector("#params");
+    const parsedURL = new URL(window.location.href);
+
+    for (const [key, value] of parsedURL.entries()) {
+      const item = document.createElement("li");
+      item.appendChild(document.createTextNode(`${key}: ${value}`));
+      paramList.appendChild(item);
+    }
+  </script>
 </html>
