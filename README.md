@@ -1,23 +1,5 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# Tugboat Test Special Character
 
-## Available Scripts
+This branch contains a route that redirects to a url with a special character, which is a violation of HTTP.
 
-In the project directory, you can run:
-
-### `npm run dev`
-
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `npm start`
-
-For production mode
-
-### `npm run test`
-
-Run the test cases.
-
-## Learn More
-
-To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
+Navigate to `/character/invalid` and it will try to redirect you to `/character/hållo`
