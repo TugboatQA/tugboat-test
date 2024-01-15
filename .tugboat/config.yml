@@ -3,6 +3,7 @@ services:
     image: tugboatqa/debian
     default: true
     expose: 3000
+    subpath: true
     commands:
       init:
         - apt-get update
