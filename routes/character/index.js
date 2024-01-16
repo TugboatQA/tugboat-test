@@ -40,8 +40,4 @@ module.exports = async function (fastify, opts) {
   fastify.get("/hållo", async function (request, reply) {
     return reply.type("text/html").send(template);
   });
-
-  fastify.get("/h%EF%BF%BDllo", async function (request, reply) {
-    return reply.type("text/html").send(templateSpecial);
-  });
 };
