@@ -10,6 +10,17 @@ const template = `
     </body>
   </html>
 `;
+const templateSpecial = `
+  <html>
+    <head>
+      <title>Tugboat Test Page</title>
+    </head>
+    <body>
+      <h1>Tugboat Test</>
+      <p>special character redirect</p>
+    </body>
+  </html>
+`;
 
 module.exports = async function (fastify, opts) {
   fastify.get("/valid", async function (request, reply) {
@@ -28,5 +39,9 @@ module.exports = async function (fastify, opts) {
 
   fastify.get("/hållo", async function (request, reply) {
     return reply.type("text/html").send(template);
+  });
+
+  fastify.get("/h%EF%BF%BDllo", async function (request, reply) {
+    return reply.type("text/html").send(templateSpecial);
   });
 };
