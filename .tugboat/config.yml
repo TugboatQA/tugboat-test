@@ -1,20 +1,35 @@
 services:
-    apache:
-        image: tugboatqa/httpd
-        aliases: test
-        http: true
-        https: false
-        commands:
-            init:
-                - echo "********** INIT **********"
-                - apt-get update
-                - apt-get install bsd-mailx
-                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-            update:
-                - echo "********** UPDATE **********"
-            build:
-                - echo "********** BUILD **********"
-                - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt
+  apache:
+    image: tugboatqa/httpd
+    aliases: test
+    http: true
+    subpath: true
+    https: false
+    commands:
+      init:
+        - echo "********** INIT **********"
+        - apt-get update
+        - apt-get install bsd-mailx
+        - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+      update:
+        - echo "********** UPDATE **********"
+      build:
+        - echo "********** BUILD **********"
+        - cat .tugboat/tugboat.txt
+    tubgoat:
+      image: tugboatqa/alpine
+      checkout: true
+      commands:
+        init:
+          - apt-get update
+          - apt-get install -yq ca-certificates curl gnupg
+          - mkdir -p /etc/apt/keyrings
+          - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+          - echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+          - apt-get update
+          - apt-get install -yq nodejs
+        build:
+          - cd "${TUGBOAT_ROOT}"/ws-server && npm i
+        start:
+          - cd "${TUGBOAT_ROOT}"/ws-server && npm run start &

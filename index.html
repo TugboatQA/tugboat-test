@@ -1,9 +1,86 @@
 <html>
-    <head>
-        <title>Tugboat Test Page</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <img src="logo.svg" alt="Tugboat Logo">
-    </body>
+  <head>
+    <title>Tugboat Test Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <h1>Tubgoat Chat Bot</h1>
+
+      <div id="status">
+        <span class="dot"></span>
+        <p>Conecting to the app…</p>
+      </div>
+
+      <ul id="messages"></ul>
+
+      <form id="form-msg" action="#" method="post">
+        <textarea
+          id="msg"
+          placeholder="Write your msg here!"
+          required
+        ></textarea>
+
+        <div id="buttons">
+          <button type="submit">Send msg</button>
+          <button type="button" id="close">Close connection</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    window.onload = function () {
+      // get the references of the page elements.
+      var form = document.getElementById("form-msg");
+      var txtMsg = document.getElementById("msg");
+      var socketStatus = document.getElementById("status");
+      var listMsgs = document.getElementById("messages");
+
+      var btnClose = document.getElementById("close");
+
+      var socket = new WebSocket("ws://localhost:8080/server/ws");
+      socket.onopen = function (event) {
+        socketStatus.innerHTML = "Connected to Socket";
+        socketStatus.className = "open";
+      };
+
+      socket.onerror = function (error) {
+        console.log("WebSocket error: " + error);
+        console.dir(error);
+      };
+
+      form.onsubmit = function (e) {
+        e.preventDefault();
+
+        // Recovering the message of the textarea.
+        var msg = txtMsg.value;
+
+        // Sending the msg via WebSocket.
+        socket.send(msg);
+
+        // Adding the msg in a list of sent messages.
+
+        listMsgs.innerHTML +=
+          '<li class="sent"><span>Sent:</span>' + msg + "</li>";
+
+        // Cleaning up the field after sending.
+        txtMsg.value = "";
+
+        return false;
+      };
+
+      socket.onmessage = function (event) {
+        var msg = event.data;
+        console.log(msg);
+
+        listMsgs.innerHTML +=
+          '<li class="received"><span>Received:</span>' + msg + "</li>";
+      };
+
+      socket.onclose = function (event) {
+        socketStatus.innerHTML = "Disconnected from the WebSocket.";
+        socketStatus.className = "closed";
+      };
+    };
+  </script>
 </html>
