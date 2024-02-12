@@ -5,6 +5,7 @@ services:
     http: true
     subpath: true
     https: false
+    default: true
     commands:
       init:
         - echo "********** INIT **********"
