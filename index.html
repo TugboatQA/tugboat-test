@@ -31,56 +31,71 @@
   <script>
     window.onload = function () {
       // get the references of the page elements.
-      var form = document.getElementById("form-msg");
-      var txtMsg = document.getElementById("msg");
-      var socketStatus = document.getElementById("status");
-      var listMsgs = document.getElementById("messages");
+      const form = document.getElementById("form-msg");
+      const txtMsg = document.getElementById("msg");
+      const socketStatus = document.getElementById("status");
+      const listMsgs = document.getElementById("messages");
 
-      var btnClose = document.getElementById("close");
+      const btnClose = document.getElementById("close");
+      connect();
 
-      var socket = new WebSocket("ws://localhost:8080/server/ws");
-      socket.onopen = function (event) {
-        socketStatus.innerHTML = "Connected to Socket";
-        socketStatus.className = "open";
-      };
+      function connect() {
+        const host = `${location.host}${location.pathname}`;
+        const socketProtocol = location.protocol === "https:" ? "wss" : "ws";
+        let socket = new WebSocket(`${socketProtocol}://${host}/socket`);
+        socket.onopen = function (event) {
+          socketStatus.innerHTML = "Connected to Socket";
+          socketStatus.className = "open";
+          btnClose.firstChild.data = "Close connection";
+        };
 
-      socket.onerror = function (error) {
-        console.log("WebSocket error: " + error);
-        console.dir(error);
-      };
+        socket.onerror = function (error) {
+          console.log("WebSocket error: " + error);
+          console.dir(error);
+        };
 
-      form.onsubmit = function (e) {
-        e.preventDefault();
+        btnClose.onclick = function (ev) {
+          const readyState = socket?.readyState;
+          if (readyState !== 1) {
+            return connect();
+          }
+          socket?.close();
+        };
 
-        // Recovering the message of the textarea.
-        var msg = txtMsg.value;
+        form.onsubmit = function (e) {
+          e.preventDefault();
 
-        // Sending the msg via WebSocket.
-        socket.send(msg);
+          // Recovering the message of the textarea.
+          const msg = txtMsg.value;
 
-        // Adding the msg in a list of sent messages.
+          // Sending the msg via WebSocket.
+          socket.send(msg);
 
-        listMsgs.innerHTML +=
-          '<li class="sent"><span>Sent:</span>' + msg + "</li>";
+          // Adding the msg in a list of sent messages.
 
-        // Cleaning up the field after sending.
-        txtMsg.value = "";
+          listMsgs.innerHTML +=
+            '<li class="sent"><span>Sent:</span>' + msg + "</li>";
 
-        return false;
-      };
+          // Cleaning up the field after sending.
+          txtMsg.value = "";
 
-      socket.onmessage = function (event) {
-        var msg = event.data;
-        console.log(msg);
+          return false;
+        };
 
-        listMsgs.innerHTML +=
-          '<li class="received"><span>Received:</span>' + msg + "</li>";
-      };
+        socket.onmessage = function (event) {
+          const msg = event.data;
+          console.log(msg);
 
-      socket.onclose = function (event) {
-        socketStatus.innerHTML = "Disconnected from the WebSocket.";
-        socketStatus.className = "closed";
-      };
+          listMsgs.innerHTML +=
+            '<li class="received"><span>Received:</span>' + msg + "</li>";
+        };
+
+        socket.onclose = function (event) {
+          socketStatus.innerHTML = "Disconnected from the WebSocket.";
+          socketStatus.className = "closed";
+          btnClose.firstChild.data = "Connect";
+        };
+      }
     };
   </script>
 </html>
