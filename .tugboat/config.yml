@@ -19,7 +19,7 @@ services:
         - echo "********** BUILD **********"
         - cat .tugboat/tugboat.txt
   tubgoat:
-    image: tugboatqa/alpine
+    image: tugboatqa/debian
     checkout: true
     commands:
       init:
