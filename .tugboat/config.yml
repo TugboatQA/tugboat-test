@@ -3,26 +3,23 @@ services:
     image: tugboatqa/nginx
     default: true
     expose: 80
-    depends: tubgoat
+    depends: server
     subpath: true
     commands:
       init:
-        - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+        - ln -snf "${TUGBOAT_ROOT}/revproxy/" "${DOCROOT}"
       build:
-        - bash $TUGBOAT_ROOT/.tugboat/scripts/build.sh
-  tubgoat:
+        - bash $TUGBOAT_ROOT/.tugboat/scripts/nginx/build.sh
+  server:
     image: tugboatqa/debian
     checkout: true
     commands:
       init:
-        - apt-get update
-        - apt-get install -yq ca-certificates curl gnupg
-        - mkdir -p /etc/apt/keyrings
-        - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-        - echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-        - apt-get update
-        - apt-get install -yq nodejs npm
+        - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        - apt install -y nodejs
+      update:
+        - bash $TUGBOAT_ROOT/.tugboat/scripts/server/update.sh
       build:
-        - cd "${TUGBOAT_ROOT}"/ws-server && npm i
+        - bash $TUGBOAT_ROOT/.tugboat/scripts/server/build.sh
       start:
-        - cd "${TUGBOAT_ROOT}"/ws-server && npm run start &
+        - npm run start --prefix ${TUGBOAT_ROOT}/server &
