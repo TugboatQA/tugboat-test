@@ -16,10 +16,12 @@ export const start = async function (opts: FastifyPluginOptions) {
       "/ws",
       { websocket: true },
       (connection /* SocketStream */, req /* FastifyRequest */) => {
-        connection.socket.send("Welcome to the server");
+        connection.socket.send("Welcome to the 🛁🐐 server");
         connection.socket.on("message", (message: Buffer) => {
           const msg = message.toString();
-          connection.socket.send(`🦜 squak! ${msg}`);
+          connection.socket.send(
+            `🐐🛁: wow what a nice thing to say. How about I give it a try? "${msg}"`
+          );
         });
       }
     );
