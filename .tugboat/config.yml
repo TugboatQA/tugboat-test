@@ -1,23 +1,15 @@
 services:
-  apache:
-    image: tugboatqa/httpd
-    aliases: test
-    http: true
-    subpath: true
-    https: false
+  nginx:
+    image: tugboatqa/nginx
     default: true
+    expose: 80
+    depends: tubgoat
+    subpath: true
     commands:
       init:
-        - echo "********** INIT **********"
-        - apt-get update
-        - apt-get install bsd-mailx
-        - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
         - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-      update:
-        - echo "********** UPDATE **********"
       build:
-        - echo "********** BUILD **********"
-        - cat .tugboat/tugboat.txt
+        - bash $TUGBOAT_ROOT/.tugboat/scripts/build.sh
   tubgoat:
     image: tugboatqa/debian
     checkout: true
