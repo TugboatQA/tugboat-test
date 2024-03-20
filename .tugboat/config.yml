@@ -1,8 +1,8 @@
 services:
-  nginx:
-    image: tugboatqa/nginx
+  server:
+    image: tugboatqa/debian
     default: true
-    expose: 80
+    expose: 3000
     subpath: true
     commands:
       init:
