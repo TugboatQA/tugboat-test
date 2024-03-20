@@ -6,6 +6,9 @@ services:
     subpath: true
     commands:
       init:
-        - ln -snf "${TUGBOAT_ROOT}/revproxy/" "${DOCROOT}"
+        - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        - apt install -y nodejs
       build:
-        - bash $TUGBOAT_ROOT/.tugboat/scripts/nginx/build.sh
+        - bash $TUGBOAT_ROOT/.tugboat/scripts/build.sh
+      start:
+        - npm start $TUGBOAT_ROOT/server/ &
