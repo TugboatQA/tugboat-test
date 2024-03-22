@@ -41,7 +41,7 @@ module.exports = async function (fastify, opts) {
     return reply.type("text/html").send(template);
   });
 
-  fastify.get("/spicy-headers", async function (request, reply) {
+  fastify.get("/special-chars-headers", async function (request, reply) {
     reply.headers({ language: "français", greeting: "allô" });
     return reply.type("text/html").send(template);
   });
