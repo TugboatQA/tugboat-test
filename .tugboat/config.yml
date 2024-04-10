@@ -15,7 +15,7 @@ services:
             update:
                 - echo "********** UPDATE **********"
                 - |
-                  for i in {0..19}; do
+                  for i in $(seq 1 20); do
                     openssl rand -out data/$i 1000000000
                   done
             build:
@@ -24,6 +24,6 @@ services:
                 - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt
                 - |
-                  for i in {0..19}; do
+                  for i in $(seq 1 20); do
                     openssl rand 2048 >> data/$i
                   done
