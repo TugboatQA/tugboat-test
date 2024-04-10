@@ -11,11 +11,12 @@ services:
                 - apt-get install bsd-mailx
                 - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+                - mkdir -p data
             update:
                 - echo "********** UPDATE **********"
                 - |
                   for i in {0..19}; do
-                    openssl rand -out $i $(( 2**30 * 3/4 ))
+                    openssl rand -out data/$i 1000000000
                   done
             build:
                 - echo "********** BUILD **********"
@@ -24,5 +25,5 @@ services:
                 - cat .tugboat/tugboat.txt
                 - |
                   for i in {0..19}; do
-                    openssl rand 2048 >> $i
+                    openssl rand 2048 >> data/$i
                   done
