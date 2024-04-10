@@ -8,7 +8,7 @@ module.exports = async function (fastify, opts) {
 };
 
 async function wait(time) {
-  return new Promsise((resolve) => {
+  return new Promise((resolve) => {
     setTimeout(resolve, time);
   });
 }
