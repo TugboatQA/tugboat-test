@@ -1,26 +1,27 @@
 services:
-    apache:
-        image: tugboatqa/httpd
-        subpath: true
-        aliases: test
-        http: true
-        https: false
-        commands:
-            init:
-                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-            build:
-                - cat .tugboat/tugboat.txt
-        urls:
-          - /
-          - /index.html
-        visualdiff:
-          threshold: 90
-        lighthouse:
-          screen:
-            - desktop
-            - mobile
-          config:
-            extends: lighthouse:default
-            settings:
-              onlyCategories:
-                - accessibility
+  apache:
+    image: tugboatqa/httpd
+    subpath: true
+    aliases: test
+    http: true
+    https: false
+    commands:
+      init:
+        - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+      build:
+        - cat .tugboat/tugboat.txt
+    urls:
+      - /
+      - /index.html
+      - /stuff/again
+    visualdiff:
+      threshold: 90
+    lighthouse:
+      screen:
+        - desktop
+        - mobile
+      config:
+        extends: lighthouse:default
+        settings:
+          onlyCategories:
+            - accessibility
