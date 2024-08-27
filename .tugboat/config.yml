@@ -17,7 +17,7 @@ services:
     visualdiff:
       threshold: 90
     lighthouse:
-      enabled: false
+      #   enabled: false
       config:
         extends: lighthouse:default
         settings:
