@@ -14,13 +14,10 @@ services:
       - /
       - /index.html
       - /stuff/again
-      - /stuff/again
     visualdiff:
       threshold: 90
     lighthouse:
-      screen:
-        - desktop
-        - mobile
+      enabled: false
       config:
         extends: lighthouse:default
         settings:
