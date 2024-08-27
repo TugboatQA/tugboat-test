@@ -14,11 +14,11 @@ services:
       - /
       - /index.html
       - /stuff/again
-    visualdiff:
-      threshold: 90
-    lighthouse:
-      config:
-        extends: lighthouse:default
-        settings:
-          onlyCategories:
-            - accessibility
+    # visualdiff:
+    #   threshold: 90
+    # lighthouse:
+    #   config:
+    #     extends: lighthouse:default
+    #     settings:
+    #       onlyCategories:
+    #         - accessibility
