@@ -2,6 +2,7 @@ services:
     apache:
         image: tugboatqa/httpd
         subpath: true
+        domain: "tugboat.local"
         commands:
             init:
                 - echo "********** INIT **********"
