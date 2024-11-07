@@ -23,6 +23,7 @@ services:
             extends: lighthouse:default
             settings:
               onlyCategories:
-                - seo
-              skipAudits:
-                - seo
+                - accessibility
+                - performance
+                - pwa
+                - best-practices
