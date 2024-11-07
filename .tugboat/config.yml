@@ -22,5 +22,5 @@ services:
           config:
             extends: lighthouse:default
             settings:
-              onlyCategories:
-                - accessibility
+              skipAudits:
+                - seo
