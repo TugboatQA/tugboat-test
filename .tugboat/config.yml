@@ -16,9 +16,6 @@ services:
         visualdiff:
           threshold: 90
         lighthouse:
-          screen:
-            - desktop
-            - mobile
           config:
             extends: lighthouse:default
             settings:
