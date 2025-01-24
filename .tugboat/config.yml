@@ -14,7 +14,7 @@ services:
                 - echo "********** BUILD **********"
             start:
                 - echo "********** START **********"
-            online::
+            online:
                 - echo "********** ONLINE *********"
 
         lighthouse:
