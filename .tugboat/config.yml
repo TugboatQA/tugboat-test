@@ -22,4 +22,5 @@ services:
             config:
                 foo: bar
 
-        urls: /
+        urls:
+            - /
