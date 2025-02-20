@@ -1,16 +1,17 @@
 services:
-    apache:
-        image: tugboatqa/httpd
-        aliases: test
-        http: true
-        https: false
-        subpath: true
-        commands:
-            init:
-                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
-            build:
-                - cat .tugboat/tugboat.txt
-        urls:
-          - /
-        visualdiff:
-          threshold: 90
+  apache:
+    image: tugboatqa/httpd
+    aliases: test
+    http: true
+    https: false
+    subpath: true
+    commands:
+      init:
+        - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+      build:
+        - cat .tugboat/tugboat.txt
+    urls:
+      - /
+    visualdiff:
+      threshold: 90
+      timeout: 20
