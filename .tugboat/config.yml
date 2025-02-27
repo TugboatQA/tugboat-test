@@ -13,4 +13,4 @@ services:
       build:
         - bash $TUGBOAT_ROOT/.tugboat/scripts/build.sh
       start:
-        - npm run start &
+        - cd $TUGBOAT_ROOT/server && npm run start &
