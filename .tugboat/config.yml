@@ -3,6 +3,7 @@ services:
         image: tugboatqa/httpd
         default: true
         aliases: test
+        subpath: true
         http: true
         https: false
         commands:
@@ -21,3 +22,7 @@ services:
                 - cat .tugboat/tugboat.txt
     mariadb:
         image: mariadb:10
+        commands:
+          build:
+            - sleep 10
+            - mysql -uroot -ptugboat -e 'create database tugboat;'
