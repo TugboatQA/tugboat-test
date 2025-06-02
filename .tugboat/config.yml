@@ -16,8 +16,7 @@ services:
             build:
                 - echo "********** BUILD **********"
         urls:
-            - url: /
-              aliases:
-                - home page
+          - /
+          - /index.html
 
 
