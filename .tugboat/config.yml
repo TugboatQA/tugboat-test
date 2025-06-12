@@ -35,6 +35,7 @@ services:
             - splithooves
         http: true
         https: false
+        checkout: true
         commands:
             init:
                 - echo "********** INIT **********"
@@ -46,9 +47,6 @@ services:
                 - echo "********** UPDATE **********"
             build:
                 - echo "********** BUILD **********"
-                - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt
         urls:
             :default:
                 - /
