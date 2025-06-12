@@ -1,5 +1,6 @@
 services:
     apache:
+        default: true
         image: tugboatqa/httpd
         aliases: 
             - tub
