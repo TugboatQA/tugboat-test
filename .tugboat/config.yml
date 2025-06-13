@@ -54,3 +54,6 @@ services:
             bathtubs:
                 - /index.html
                 - /tubgoat.html
+        visualdiff:
+            enabled: true
+            threshold: 90
