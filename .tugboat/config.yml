@@ -2,6 +2,9 @@ services:
     apache:
         image: tugboatqa/httpd
         subpath: true
+        environment:
+            - CHICKEN=duck
+            - GOAT=moo
         commands:
             init:
                 - echo "********** INIT **********"
@@ -20,3 +23,6 @@ services:
                     -e "s@style.css\"@$TUGBOAT_SERVICE_URL_PATH/&@"
                     -e "s@logo.svg\"@$TUGBOAT_SERVICE_URL_PATH/&@"
                     -i index.html
+                - |
+                    set -eu
+                    echo "$CHICKEN says $GOAT"
