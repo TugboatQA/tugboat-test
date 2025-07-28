@@ -22,6 +22,8 @@ services:
                 - cat .tugboat/tugboat.txt
     mariadb:
         image: mariadb:10
+        environment:
+            - MARIADB_ROOT_PASSWORD=tugboat
         commands:
           build:
             - sleep 10
