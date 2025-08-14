@@ -4,6 +4,10 @@ services:
         aliases: test
         http: true
         https: false
+        urls: 
+            - /
+        visualdiff: 
+            threshold: 98
         commands:
             init:
                 - echo "********** INIT **********"
