@@ -16,8 +16,10 @@ services:
         - apt-get update
         - apt-get install -yq nodejs
       update:
+        - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
       build:
+        - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
       start:
         - npm run start &
