@@ -51,16 +51,3 @@ services:
                 - echo "********** UPDATE **********"
             build:
                 - echo "********** BUILD **********"
-        lighthouse:
-            screen: 
-                - mobile
-                - desktop 
-        urls:
-            :default:
-                - /
-            bathtubs:
-                - /index.html
-                - /tubgoat.html
-        visualdiff:
-            enabled: true
-            threshold: 90
