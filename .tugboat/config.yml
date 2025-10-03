@@ -1,6 +1,6 @@
 services:
     apache:
-        image: tugboatqa/httpd
+        image: jcbain/gremlins
         aliases: test
         http: true
         https: false
