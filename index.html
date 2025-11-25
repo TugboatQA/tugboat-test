@@ -1,9 +1,23 @@
 <html>
-    <head>
-        <title>Tugboat Test Page</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <img src="logo.svg" alt="Tugboat Logo">
-    </body>
+  <head>
+    <title>Tugboat Test Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <img src="logo.svg" alt="Tugboat Logo" />
+    <h2>CSP Iframe Test - Embedding self</h2>
+    <iframe
+      id="testIframe"
+      src=""
+      width="100%"
+      height="600px"
+      style="border: 2px solid #333;"
+    ></iframe>
+    <script>
+      // Set iframe to load the same page
+      const currentUrl = window.location.href;
+      document.getElementById('currentUrl').textContent = currentUrl;
+      document.getElementById('testIframe').src = currentUrl;
+    </script>
+  </body>
 </html>
