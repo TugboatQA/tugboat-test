@@ -1,7 +1,127 @@
 body {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  margin-top: 0;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+#messageInput {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+#messageInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#sendButton {
+  background-color: #667eea;
+  color: white;
+}
+
+#sendButton:hover:not(:disabled) {
+  background-color: #5568d3;
+}
+
+#connectButton {
+  background-color: #48bb78;
+  color: white;
+}
+
+#connectButton:hover:not(:disabled) {
+  background-color: #38a169;
+}
+
+#disconnectButton {
+  background-color: #f56565;
+  color: white;
+}
+
+#disconnectButton:hover:not(:disabled) {
+  background-color: #e53e3e;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.status.connected {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.status.disconnected {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+.messages {
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+  background-color: #f7fafc;
+}
+
+.message {
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  word-wrap: break-word;
+}
+
+.message.sent {
+  background-color: #e6fffa;
+  text-align: right;
+}
+
+.message.received {
+  background-color: #fff5e6;
+  text-align: left;
 }
