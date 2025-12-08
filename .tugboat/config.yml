@@ -1,6 +1,6 @@
 services:
     go:
-        image: tugboatqa/httpd
+        image: tugboatqa/alpine
         aliases: test
         http: true
         https: false
