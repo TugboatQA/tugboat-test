@@ -4,6 +4,7 @@ services:
         aliases: test
         http: true
         https: false
+        expose: 8080
         commands:
             init:
                 - apk update
