@@ -6,7 +6,8 @@ services:
         https: false
         commands:
             init:
-                - apk add --no-cache --virtual .build-deps runit bash gcc musl-dev openssl go bsd-mailx
+                - apk update
+                - apk add --no-cache --virtual .build-deps runit bash gcc musl-dev openssl go mailx
                 - mkdir -p /etc/service/server
                 - cp "${TUGBOAT_ROOT}/.tugboat/runit/server/run" /etc/service/server/run
                 - chmod +x /etc/service/server/run
