@@ -1,20 +1,20 @@
 services:
-    apache:
+    go:
         image: tugboatqa/httpd
         aliases: test
         http: true
         https: false
         commands:
             init:
-                - echo "********** INIT **********"
-                - apt-get update
-                - apt-get install bsd-mailx
-                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+                - apk add --no-cache --virtual .build-deps runit bash gcc musl-dev openssl go bsd-mailx
+                - mkdir -p /etc/service/server
+                - cp "${TUGBOAT_ROOT}/.tugboat/runit/server/run" /etc/service/server/run
+                - chmod +x /etc/service/server/run
             update:
                 - echo "********** UPDATE **********"
             build:
                 - echo "********** BUILD **********"
+                - cd ${TUGBOAT_ROOT}/server && go build -o server .
                 - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt

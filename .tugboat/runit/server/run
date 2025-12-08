@@ -1,0 +1,7 @@
+#!/bin/sh
+# Runit service script for the Go WebSocket server
+# This script runs the server in the foreground
+# Runit will automatically restart it if it crashes
+
+cd "${TUGBOAT_ROOT}/server"
+exec ./server
