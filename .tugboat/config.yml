@@ -7,7 +7,7 @@ services:
     commands:
       init:
         - apt-get update
-        - apt-get install -yq ca-certificates curl gnupg
+        - apt-get install -yq ca-certificates curl gnupg runit
         - mkdir -p /etc/apt/keyrings
         - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o
           /etc/apt/keyrings/nodesource.gpg
@@ -15,11 +15,15 @@ services:
           tee /etc/apt/sources.list.d/nodesource.list
         - apt-get update
         - apt-get install -yq nodejs
+        - mkdir -p /etc/sv/app
+        - echo '#!/bin/sh' > /etc/sv/app/run
+        - echo 'cd "$${TUGBOAT_ROOT}"' >> /etc/sv/app/run
+        - echo 'exec npm run start' >> /etc/sv/app/run
+        - chmod +x /etc/sv/app/run
+        - ln -sf /etc/sv/app /etc/service/app
       update:
         - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
       build:
         - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
-      start:
-        - npm run start &
