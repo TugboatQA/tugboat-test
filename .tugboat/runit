@@ -1,0 +1,4 @@
+#!/bin/sh
+cd "${TUGBOAT_ROOT}"
+exec npm run start
+
