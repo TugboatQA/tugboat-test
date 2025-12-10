@@ -22,8 +22,6 @@ services:
         - chmod +x /etc/sv/app/run
         - ln -sf /etc/sv/app /etc/service/app
       update:
-        - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
       build:
-        - apt-get install npm
         - cd "${TUGBOAT_ROOT}" && npm install
