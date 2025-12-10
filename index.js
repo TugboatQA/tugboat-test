@@ -10,7 +10,7 @@ const prefix =
 
 async function start() {
   await fastify.register(app, { prefix });
-  await fastify.listen({ port: 3000 });
+  await fastify.listen({ port: 3000, host: "0.0.0.0" });
   fastify.log.info(`server listening on ${fastify.server.address().port}`);
 }
 
