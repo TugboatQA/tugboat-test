@@ -3,18 +3,6 @@
 const path = require("path");
 const AutoLoad = require("@fastify/autoload");
 
-const errTemplate = `
-  <html>
-    <head>
-      <title>Tugboat Test Page Error</title>
-    </head>
-    <body>
-      <h1>Tugboat Test</>
-      <p>You've made it here by mistake</p>
-    </body>
-  </html>
-`;
-
 // Pass --options via CLI arguments in command to enable these options.
 module.exports.options = {};
 
