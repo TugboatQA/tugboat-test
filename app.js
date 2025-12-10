@@ -4,7 +4,9 @@ const path = require("path");
 const AutoLoad = require("@fastify/autoload");
 
 // Pass --options via CLI arguments in command to enable these options.
-module.exports.options = {};
+module.exports.options = {
+  prefix: process.env.TUGBOAT_SERVICE_URL_PATH || "/",
+};
 
 module.exports = async function (fastify, opts) {
   // Place here your custom code!
