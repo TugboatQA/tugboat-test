@@ -7,5 +7,7 @@ module.exports = fp(async function (fastify, opts) {
   fastify.register(require("@fastify/static"), {
     root: path.join(__dirname, "../public"),
     prefix: "/",
+    index: "index.html",
+    redirect: true,
   });
 });
