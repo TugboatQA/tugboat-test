@@ -14,9 +14,9 @@ module.exports = async function (fastify, opts) {
   fastify.register(require("./routes"));
 
   // Handle not found requests
-  app.setNotFoundHandler((req, reply) => {
+  fastify.setNotFoundHandler((req, reply) => {
     // check if the affected route is equivalent to the baseurl without a trailing slash
-    if (config.baseurlExists && req.url === baseurl.replace(/\/$/, "")) {
+    if (baseurlExists && req.url === baseurl.replace(/\/$/, "")) {
       return reply.redirect(baseurl);
     }
     return reply.code(404).send({ error: "Not Found" });
