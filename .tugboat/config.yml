@@ -4,6 +4,7 @@ services:
     default: true
     expose: 3000
     subpath: true
+    subpath_map: false
     commands:
       init:
         - apt-get update

@@ -3,9 +3,10 @@
 const fastify = require("fastify")({ logger: true });
 const app = require("./app");
 
-const prefix = process.env.TUGBOAT_SERVICE_URL_PATH
-  ? `${process.env.TUGBOAT_SERVICE_URL_PATH}/`
-  : "/";
+const prefix =
+  process.env.TUGBOAT_PREVIEW && process.env.TUGBOAT_TOKEN
+    ? `/${process.env.TUGBOAT_PREVIEW}-${process.env.TUGBOAT_TOKEN}/`
+    : "/";
 
 async function start() {
   await fastify.register(app, { prefix });
