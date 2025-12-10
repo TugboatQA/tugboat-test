@@ -11,3 +11,7 @@ module.exports = fp(async function (fastify, opts) {
     redirect: true,
   });
 });
+
+module.exports.options = {
+  ignoreTrailingSlash: true,
+};
