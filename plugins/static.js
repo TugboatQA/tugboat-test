@@ -9,9 +9,6 @@ module.exports = fp(async function (fastify, opts) {
     prefix: "/",
     index: "index.html",
     redirect: true,
+    ignoreTrailingSlash: true,
   });
 });
-
-module.exports.options = {
-  ignoreTrailingSlash: true,
-};
