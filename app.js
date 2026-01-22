@@ -19,6 +19,6 @@ module.exports = async function (fastify, opts) {
     if (baseurlExists && req.url === baseurl.replace(/\/$/, "")) {
       return reply.redirect(baseurl);
     }
-    return reply.code(404).send({ error: "Not Found" });
+    return reply.code(404).type("text/html").sendFile("error.html");
   });
 };

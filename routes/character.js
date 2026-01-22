@@ -30,18 +30,4 @@ module.exports = async function (fastify, opts) {
     reply.headers({ language: "français", greeting: "allô" });
     return reply.type("text/html").send(template);
   });
-
-  fastify.setNotFoundHandler(function (request, reply) {
-    console.log("Not Found", request.url);
-    const errorTemplate = `
-        <html>
-          <head>
-            <title>Tugboat Test Page</title>
-          </head>
-          <body>
-            <h1>Tugboat Test Error</>
-          </body>
-        </html>`;
-    return reply.type("text/html").send(errorTemplate);
-  });
 };
