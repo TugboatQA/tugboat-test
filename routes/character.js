@@ -1,3 +1,5 @@
+const TUGBOAT_DEFAULT_SERVICE_URL =
+  process.env.TUGBOAT_DEFAULT_SERVICE_URL || "http://localhost:3000";
 const template = `
   <html>
     <head>
@@ -11,16 +13,12 @@ const template = `
 
 module.exports = async function (fastify, opts) {
   fastify.get("/valid", async function (request, reply) {
-    const redirect = `${
-      TUGBOAT_DEFAULT_SERVICE_URL || "http://localhost:3000"
-    }/character/h%C3%A5llo`;
+    const redirect = `${TUGBOAT_DEFAULT_SERVICE_URL}/character/h%C3%A5llo`;
     return reply.redirect(redirect);
   });
 
   fastify.get("/invalid", async function (request, reply) {
-    const redirect = `${
-      TUGBOAT_DEFAULT_SERVICE_URL || "http://localhost:3000"
-    }/character/hållo`;
+    const redirect = `${TUGBOAT_DEFAULT_SERVICE_URL}/character/hållo`;
     return reply.redirect(redirect);
   });
 
