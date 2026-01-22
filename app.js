@@ -1,7 +1,5 @@
 "use strict";
 
-const path = require("path");
-
 const baseurlExists = process.env.TUGBOAT_PREVIEW && process.env.TUGBOAT_TOKEN;
 const baseurl = baseurlExists
   ? `/${process.env.TUGBOAT_PREVIEW}-${process.env.TUGBOAT_TOKEN}/`
@@ -24,6 +22,6 @@ module.exports = async function (fastify, opts) {
     return reply
       .code(404)
       .type("text/html")
-      .sendFile("error.html", { root: path.join(__dirname, "public") });
+      .sendFile("error.html", { root: fastify.publicRoot });
   });
 };
