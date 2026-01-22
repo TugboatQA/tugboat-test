@@ -200,7 +200,7 @@ button:disabled {
 }
 
 .message.sent {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #03384b 0%, #33add5 100%);
   color: white;
   align-self: flex-end;
   text-align: left;
