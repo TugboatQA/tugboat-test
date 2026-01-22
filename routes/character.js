@@ -32,6 +32,7 @@ module.exports = async function (fastify, opts) {
   });
 
   fastify.setNotFoundHandler(function (request, reply) {
+    console.log("Not Found", request.url);
     const errorTemplate = `
         <html>
           <head>
