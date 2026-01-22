@@ -48,8 +48,8 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Received: %s", message)
 
 		// Prepend the parrot emoji to the message
-		// The parrot emoji is 🦜 (Unicode)
-		parrotMessage := "🦜 " + string(message)
+		// The parrot emoji is 🐐 (Unicode)
+		parrotMessage := "🐐 " + string(message)
 
 		// WriteMessage sends a message back to the client
 		// We use the same messageType that was received (usually TextMessage)
