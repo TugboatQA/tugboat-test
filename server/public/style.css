@@ -15,6 +15,11 @@ body {
   align-items: center;
 }
 
+.main--light {
+  background: white;
+  color: #1a202c;
+}
+
 .container {
   background: white;
   border-radius: 16px;
