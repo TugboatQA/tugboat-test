@@ -2,6 +2,6 @@
 
 module.exports = function (fastify, opts, done) {
   fastify.register(require("./status"));
-  fastify.register(require("./character"));
+  fastify.register(require("./character"), { prefix: "/character" });
   done();
 };
