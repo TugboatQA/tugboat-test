@@ -1,15 +1,5 @@
 const TUGBOAT_DEFAULT_SERVICE_URL =
   process.env.TUGBOAT_DEFAULT_SERVICE_URL || "http://localhost:3000";
-const template = `
-  <html>
-    <head>
-      <title>Tugboat Test Page</title>
-    </head>
-    <body>
-      <h1>Tugboat Test</>
-    </body>
-  </html>
-`;
 
 module.exports = async function (fastify, opts) {
   fastify.get("/valid", async function (request, reply) {
@@ -23,11 +13,15 @@ module.exports = async function (fastify, opts) {
   });
 
   fastify.get("/hållo", async function (request, reply) {
-    return reply.type("text/html").send(template);
+    return reply
+      .type("text/html")
+      .sendFile("index.html", { root: fastify.publicRoot });
   });
 
   fastify.get("/special-chars-headers", async function (request, reply) {
     reply.headers({ language: "français", greeting: "allô" });
-    return reply.type("text/html").send(template);
+    return reply
+      .type("text/html")
+      .sendFile("index.html", { root: fastify.publicRoot });
   });
 };
