@@ -52,9 +52,9 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 	html := fmt.Sprintf(`<!DOCTYPE html>
 <html>
   <head>
+    <base href="%s/large-header/">
     <title>Large Header - Size %d</title>
     <link href="/style.css" rel="stylesheet" type="text/css" />
-	<base href="%s/">
     <style>
       h1 {
         font-size: %dpx;
@@ -64,7 +64,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
   <body>
     <h1>Large Header (Size: %dpx)</h1>
   </body>
-</html>`, size, baseUrl, size, size)
+</html>`, baseUrl, size, size, size)
 	
 	fmt.Fprint(w, html)
 }
@@ -80,12 +80,19 @@ func main() {
 	// Register the large-header route handler
 	http.HandleFunc("/large-header/", largeHeaderHandler)
 
+	// Create a custom HTTP server with increased header size limit
+	// MaxHeaderBytes is in bytes (default is 1MB = 1048576)
+	// Setting to 10MB to allow for very large headers
+	server := &http.Server{
+		Addr:           "0.0.0.0:" + strconv.Itoa(port),
+		MaxHeaderBytes: 16 * 1024, // 16KB
+	}
+
 	// Print a message indicating the server is starting
 	fmt.Println("Server starting on port 8080")
 
-	// Start the HTTP server on port 8080
-	var location = "0.0.0.0:" + strconv.Itoa(port)
-	if err := http.ListenAndServe(location, nil); err != nil {
+	// Start the HTTP server
+	if err := server.ListenAndServe(); err != nil {
 		log.Fatal("Server failed to start: ", err)
 	}
 }
