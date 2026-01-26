@@ -57,7 +57,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 	html := fmt.Sprintf(`<!DOCTYPE html>
 <html>
   <head>
-    <base href="%s/large-header/">
+    <base href="%s">
     <title>Large Header - Size %d</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <style>
