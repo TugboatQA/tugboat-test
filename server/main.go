@@ -39,7 +39,12 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var baseUrl = lookUpEnv("TUGBOAT_DEFAULT_SERVICE_URL", "http://localhost:" + strconv.Itoa(port))
+	preview := lookUpEnv("TUGBOAT_PREVIEW", "")
+	token := lookUpEnv("TUGBOAT_TOKEN", "")
+	baseUrl := "/"
+	if (preview != "" || token != "") {
+		baseUrl = fmt.Sprintf("/%s-%s/", preview, token)
+	}
 	
 	// Create a header value of 'size * 1024' bytes filled with 'a' characters
 	headerValue := strings.Repeat("a", size * 1024)
