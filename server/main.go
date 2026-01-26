@@ -4,9 +4,20 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
+
+var port = 8080
+
+func lookUpEnv(env string, defaultVal string) string {
+	value := os.Getenv(env)
+	if value == "" {
+		value = defaultVal
+	}
+	return value
+}
 
 func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the path to extract the size parameter
@@ -27,6 +38,8 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid size parameter. Must be a number.", http.StatusBadRequest)
 		return
 	}
+
+	var baseUrl = lookUpEnv("TUGBOAT_DEFAULT_SERVICE_URL", "http://localhost:" + strconv.Itoa(port))
 	
 	// Set content type to HTML
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -37,6 +50,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
   <head>
     <title>Large Header - Size %d</title>
     <link href="/style.css" rel="stylesheet" type="text/css" />
+	<base href="%s">
     <style>
       h1 {
         font-size: %dpx;
@@ -46,7 +60,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
   <body>
     <h1>Large Header (Size: %dpx)</h1>
   </body>
-</html>`, size, size, size)
+</html>`, size, baseUrl, size, size)
 	
 	fmt.Fprint(w, html)
 }
@@ -66,7 +80,8 @@ func main() {
 	fmt.Println("Server starting on port 8080")
 
 	// Start the HTTP server on port 8080
-	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
+	var location = "0.0.0.0:" + strconv.Itoa(port)
+	if err := http.ListenAndServe(location, nil); err != nil {
 		log.Fatal("Server failed to start: ", err)
 	}
 }
