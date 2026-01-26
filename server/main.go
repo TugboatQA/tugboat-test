@@ -58,7 +58,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 <html>
   <head>
     <base href="%s">
-    <title>Large Header - Size %d</title>
+    <title>Large Header - Size %dKB</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <style>
       h1 {
@@ -68,7 +68,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
   </head>
   <body>
   	<img src="logo.svg" alt="Tugboat Logo" />
-    <h1>Large Header (Size: %dpx)</h1>
+    <h1>Large Header (Size: %dKB)</h1>
   </body>
 </html>`, baseUrl, size, size, size)
 	
