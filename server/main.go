@@ -41,8 +41,12 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
 
 	var baseUrl = lookUpEnv("TUGBOAT_DEFAULT_SERVICE_URL", "http://localhost:" + strconv.Itoa(port))
 	
+	// Create a header value of 'size * 1024' bytes filled with 'a' characters
+	headerValue := strings.Repeat("a", size * 1024)
+	
 	// Set content type to HTML
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("X-Large-Header", headerValue)
 	
 	// Generate HTML with a header of the specified size
 	html := fmt.Sprintf(`<!DOCTYPE html>
@@ -50,7 +54,7 @@ func largeHeaderHandler(w http.ResponseWriter, r *http.Request) {
   <head>
     <title>Large Header - Size %d</title>
     <link href="/style.css" rel="stylesheet" type="text/css" />
-	<base href="%s">
+	<base href="%s/">
     <style>
       h1 {
         font-size: %dpx;
