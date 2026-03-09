@@ -45,4 +45,11 @@ module.exports = async function (fastify, opts) {
     reply.headers({ language: "français", greeting: "allô" });
     return reply.type("text/html").send(template);
   });
+
+  // Simulates a Next.js static chunk URL for a catch-all route like [...slug].
+  // The percent-encoded brackets (%5B, %5D) and three dots (...) in the path
+  // triggered a false positive in @fastify/reply-from's path traversal check.
+  fastify.get("/static/[...slug].js", async function (request, reply) {
+    return reply.type("text/html").send(template);
+  });
 };
