@@ -1,5 +1,6 @@
 services:
   elasticsearch:
+    default: true
     image: tugboatqa/elasticsearch:8.18.8
     http: true
     https: false
