@@ -4,8 +4,7 @@ services:
     http: true
     https: false
     commands:
-      init:
-        - echo "********** INIT **********"
+      build:
         - |
           cat > /usr/share/elasticsearch/config/elasticsearch.yml << 'EOF'
           network.host: 0.0.0.0
