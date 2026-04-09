@@ -4,6 +4,11 @@ services:
     image: tugboatqa/elasticsearch:8.18.8
     http: true
     https: false
+    environment:
+      - ES_SETTING_DISCOVERY_TYPE=single-node
+      - ES_SETTING_XPACK_SECURITY_ENABLED=false
+      - ES_SETTING_XPACK_SECURITY_ENROLLMENT_ENABLED=false
+      - ES_SETTING_NETWORK_HOST=0.0.0.0
     commands:
       init:
-        - cp .tugboat/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+        - "TRYING THIS"
