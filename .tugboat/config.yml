@@ -4,11 +4,5 @@ services:
     http: true
     https: false
     commands:
-      build:
-        - |
-          cat > /usr/share/tugboat/elasticsearch.yml << 'EOF'
-          network.host: 0.0.0.0
-          discovery.type: single-node
-          xpack.security.enabled: false
-          xpack.security.enrollment.enabled: false
-          EOF
+      init:
+        - cp .tugboat/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
