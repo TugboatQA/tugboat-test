@@ -6,7 +6,7 @@ services:
     commands:
       build:
         - |
-          cat > /usr/share/elasticsearch/config/elasticsearch.yml << 'EOF'
+          cat > /usr/share/tugboat/elasticsearch.yml << 'EOF'
           network.host: 0.0.0.0
           discovery.type: single-node
           xpack.security.enabled: false
