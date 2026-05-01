@@ -18,4 +18,5 @@ services:
       build:
         - echo "********** BUILD **********"
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
+        - echo $secretEnv
         - cat .tugboat/tugboat.txt
