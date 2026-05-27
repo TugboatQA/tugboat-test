@@ -18,5 +18,6 @@ services:
       build:
         - echo "********** BUILD **********"
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
-        - echo "this value is a secret:" ${SECRET_ENV_VAR}
+        - echo "this value is an encrypted global environment variable:" ${SECRET_ENV_VAR}
+        - echo "this value is an encrypted runtime environment variable:" ${ENCRYPTED_RUNTIME}
         - cat .tugboat/tugboat.txt
