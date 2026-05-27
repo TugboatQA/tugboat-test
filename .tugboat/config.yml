@@ -19,5 +19,10 @@ services:
         - echo "********** BUILD **********"
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
         - echo "this value is an encrypted global environment variable:" ${SECRET_ENV_VAR}
-        - echo "this value is an encrypted runtime environment variable:" ${ENCRYPTED_RUNTIME}
+        - echo "this value is an encrypted runtime environment variable (SHOULD NOT BE VISIBLE):" ${ENCRYPTED_RUNTIME}
+        - cat .tugboat/tugboat.txt
+      online:
+        - echo "********** ONLINE **********"
+        - echo "this value is an encrypted global environment variable:" ${SECRET_ENV_VAR}
+        - echo "this value is an encrypted runtime environment variable (SHOULD BE VISIBLE):" ${ENCRYPTED_RUNTIME}
         - cat .tugboat/tugboat.txt
