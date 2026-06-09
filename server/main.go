@@ -4,20 +4,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"golang.org/x/net/webdav"
 )
 
-
 func main() {
-	// Serve static files (HTML, CSS, images) from the public directory
-	// http.StripPrefix removes the "/" prefix before looking for files
-	// http.FileServer serves files from the "public" directory
-	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("public"))))
+	mux := http.NewServeMux()
 
-	// Print a message indicating the server is starting
+	// WebDAV endpoint for e2e verb testing (PUT, PROPFIND, MKCOL, COPY, MOVE, LOCK, etc.)
+	mux.Handle("/webdav/", &webdav.Handler{
+		Prefix:     "/webdav/",
+		FileSystem: webdav.Dir("webdav"),
+		LockSystem: webdav.NewMemLS(),
+	})
+
+	// Serve static files (HTML, CSS, images) from the public directory
+	mux.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("public"))))
+
 	fmt.Println("Server starting on port 8080")
 
-	// Start the HTTP server on port 8080
-	if err := http.ListenAndServe("0.0.0.0:8080", nil); err != nil {
+	if err := http.ListenAndServe("0.0.0.0:8080", mux); err != nil {
 		log.Fatal("Server failed to start: ", err)
 	}
 }
