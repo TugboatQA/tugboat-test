@@ -1,8 +1,16 @@
-const path = require("path");
-const fs = require("fs").promises;
-
 const TUGBOAT_DEFAULT_SERVICE_URL =
   process.env.TUGBOAT_DEFAULT_SERVICE_URL || "http://localhost:3000";
+
+const template = `
+  <html>
+    <head>
+      <title>Tugboat Test Page</title>
+    </head>
+    <body>
+      <h1>Tugboat Test</>
+    </body>
+  </html>
+`;
 
 module.exports = async function (fastify, opts) {
   fastify.get("/valid", async function (request, reply) {
@@ -16,27 +24,18 @@ module.exports = async function (fastify, opts) {
   });
 
   fastify.get("/hållo", async function (request, reply) {
-    let html = await fs.readFile(
-      path.join(fastify.publicRoot, "index.html"),
-      "utf-8"
-    );
-    html = html.replace(
-      /<head>/,
-      `<head>\n    <base href="${TUGBOAT_DEFAULT_SERVICE_URL}/">`
-    );
-    return reply.type("text/html").send(html);
+    return reply.type("text/html").send(template);
   });
 
   fastify.get("/special-chars-headers", async function (request, reply) {
     reply.headers({ language: "français", greeting: "allô" });
-    let html = await fs.readFile(
-      path.join(fastify.publicRoot, "index.html"),
-      "utf-8"
-    );
-    html = html.replace(
-      /<head>/,
-      `<head>\n    <base href="${TUGBOAT_DEFAULT_SERVICE_URL}/">`
-    );
-    return reply.type("text/html").send(html);
+    return reply.type("text/html").send(template);
+  });
+
+  // Simulates a Next.js static chunk URL for a catch-all route like [...slug].
+  // The percent-encoded brackets (%5B, %5D) and three dots (...) in the path
+  // triggered a false positive in @fastify/reply-from's path traversal check.
+  fastify.get("/static/[...slug].js", async function (request, reply) {
+    return reply.type("text/html").send(template);
   });
 };
