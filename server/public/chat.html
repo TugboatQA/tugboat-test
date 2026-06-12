@@ -73,7 +73,8 @@
         const pathname = window.location.pathname;
         const basePath = pathname.replace(/\/chat(\.html)?$/, "") || "";
         // Create a new WebSocket connection
-        ws = new WebSocket(`ws://${window.location.hostname}${basePath}/ws`);
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        ws = new WebSocket(`${protocol}//${window.location.hostname}${basePath}/ws`);
 
         // Event handler: called when the connection is successfully established
         ws.onopen = function () {
