@@ -20,5 +20,8 @@ services:
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
         - cat .tugboat/tugboat.txt
     urls:
-      - /
-      - /lazy-load
+        - /
+        - /index.html
+        - /lazy-load/
+    visualdiff:
+      threshold: 90
