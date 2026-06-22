@@ -19,26 +19,6 @@ services:
         - echo "********** BUILD **********"
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
         - cat .tugboat/tugboat.txt
-      screenshot:
-        enabled: true
-
-        # The following options are used when taking a screenshot of
-        # the URL for _this_ preview
-        timeout: 30
-        waitUntil:
-          - load
-        fullPage: false
-
-      # Visual Diff settings that affect all of the defined service URLs.
-      # These override our defaults, and can also be overridden per-URL
-      visualdiff:
-        # Visual Diffs depend on Screenshots being enabled. If Screenshots
-        # are disabled for this Service, Visual Diffs are also disabled,
-        # and this setting has no effect.
-        enabled: true
-        # The following options are used when taking a screenshot of
-        # the URL for the _base_ preview
-        timeout: 30
-        waitUntil:
-        - load
-        fullPage: true
+    urls:
+      - /
+      - /lazy-load
