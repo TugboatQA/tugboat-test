@@ -10,14 +10,15 @@ services:
       init:
         - apk update
         - apk add --no-cache --virtual .build-deps runit bash gcc musl-dev openssl go
-        - mkdir -p /etc/service/server
-        - cp "${TUGBOAT_ROOT}/.tugboat/runit/server/run" /etc/service/server/run
-        - chmod +x /etc/service/server/run
       update:
         - echo "********** UPDATE **********"
       build:
         - echo "********** BUILD **********"
         - cd ${TUGBOAT_ROOT}/server && go build -o server .
+        - mkdir -p /etc/service/server
+        - cp "${TUGBOAT_ROOT}/.tugboat/runit/server/run" /etc/service/server/run
+        - chmod +x /etc/service/server/run
+        - sv restart server || sv up server || true
         - cat .tugboat/tugboat.txt
     urls:
         - /
