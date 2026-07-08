@@ -1,6 +1,6 @@
 services:
   go:
-    image: tugboatqa/alpine
+    image: tugboatqa/alpine:3.21
     aliases: test
     http: true
     https: false
@@ -14,7 +14,8 @@ services:
         - echo "********** UPDATE **********"
       build:
         - echo "********** BUILD **********"
-        - cd ${TUGBOAT_ROOT}/server && go build -o server .
+        - go version
+        - cd "${TUGBOAT_ROOT}/server" && go build -o server .
         - mkdir -p /etc/service/server
         - cp "${TUGBOAT_ROOT}/.tugboat/runit/server/run" /etc/service/server/run
         - chmod +x /etc/service/server/run
