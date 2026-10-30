@@ -20,5 +20,8 @@ services:
                 - cat .tugboat/tugboat.txt
         lighthouse:
             enabled: true
+            threshold:
+                desktop:
+                    threshold: 90
         urls:
             - /
