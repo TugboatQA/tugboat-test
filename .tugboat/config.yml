@@ -25,5 +25,4 @@ services:
               onlyCategories:
                 - accessibility
                 - performance
-                - pwa
                 - best-practices
