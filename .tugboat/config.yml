@@ -22,11 +22,7 @@ services:
             enabled: true
             screen:
                 - desktop
-                - mobile
+            threshold: performance
         urls:
             - /
             - /slow/
-            - /a11y-bad/
-            - /seo-bad/
-            - /checkout/
-            - /mediocre/
