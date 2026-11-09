@@ -1,7 +1,7 @@
 services:
-    apache:
+    site-a:
         image: tugboatqa/httpd
-        aliases: test
+        aliases: a
         http: true
         https: false
         commands:
@@ -15,18 +15,26 @@ services:
                 - echo "********** UPDATE **********"
             build:
                 - echo "********** BUILD **********"
-                - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt
         lighthouse:
             enabled: true
-            screen:
-                - desktop
-                - mobile
+            threshold: 90
         urls:
             - /
-            - /slow/
-            - /a11y-bad/
-            - /seo-bad/
-            - /checkout/
-            - /mediocre/
+    site-b:
+        image: tugboatqa/httpd
+        aliases: b
+        http: true
+        https: false
+        commands:
+            init:
+                - echo "********** INIT **********"
+                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+            update:
+                - echo "********** UPDATE **********"
+            build:
+                - echo "********** BUILD **********"
+        lighthouse:
+            enabled: true
+            threshold: 50
+        urls:
+            - /
