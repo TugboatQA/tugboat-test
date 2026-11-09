@@ -1,5 +1,6 @@
 services:
     site-a:
+        default: true
         image: tugboatqa/httpd
         aliases: a
         http: true
