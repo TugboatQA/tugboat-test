@@ -21,9 +21,10 @@ services:
         lighthouse:
             enabled: true
             config:
-                onlyCategories:
-                    - seo
-                    - accessibility
+                settings:
+                    onlyCategories:
+                        - seo
+                        - accessibility
             threshold:
                 - category: seo
                   threshold: 90
