@@ -1,5 +1,6 @@
 services:
     web:
+        default: true
         image: tugboatqa/httpd
         http: true
         https: false
