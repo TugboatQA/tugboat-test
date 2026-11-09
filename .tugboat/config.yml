@@ -26,6 +26,17 @@ services:
                 - /
             goat:
                 - /index.html
+                # This report always errors: Lighthouse rejects a config that
+                # lists the same audit in both onlyAudits and skipAudits.
+                - url: /tubgoat.html
+                  lighthouse:
+                      config:
+                          extends: lighthouse:default
+                          settings:
+                              onlyAudits:
+                                  - viewport
+                              skipAudits:
+                                  - viewport
             tub:
                 - /tubgoat.html
     ngnix:
