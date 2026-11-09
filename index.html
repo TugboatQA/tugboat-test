@@ -1,9 +1,30 @@
-<html>
-    <head>
-        <title>Tugboat Test Page</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <img src="logo.svg" alt="Tugboat Logo">
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tugboat Lighthouse threshold test page with solid accessibility and SEO.">
+  <title>Tugboat Lighthouse Threshold Tests</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Tugboat Lighthouse Threshold Tests</h1>
+    <p>High-scoring fixture page for absolute and base threshold previews.</p>
+  </header>
+  <main>
+    <img src="/logo.svg" alt="Tugboat logo" width="120" height="120">
+    <p>This page uses semantic HTML, a meta description, and an accessible image so Lighthouse categories stay high.</p>
+    <nav aria-label="Fixture pages">
+      <ul>
+        <li><a href="/">Home (good)</a></li>
+        <li><a href="/slow/">Slow (bad performance)</a></li>
+        <li><a href="/a11y-bad/">Bad accessibility</a></li>
+        <li><a href="/seo-bad/">Bad SEO</a></li>
+        <li><a href="/checkout/">Checkout (mixed bad)</a></li>
+        <li><a href="/mediocre/">Mediocre scores</a></li>
+      </ul>
+    </nav>
+  </main>
+</body>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bad accessibility fixture</title>
+  <style>
+    body { background: #eee; color: #ddd; font-family: sans-serif; }
+    .btn { background: #f5f5f5; color: #e8e8e8; border: 0; padding: 8px; }
+    a { color: #ccc; }
+  </style>
+</head>
+<body>
+  <div>Welcome</div>
+  <img src="/logo.svg" width="200" height="200">
+  <div onclick="alert('x')">Click here</div>
+  <input type="text">
+  <button class="btn">Go</button>
+  <a href="#">more</a>
+</body>
+</html>

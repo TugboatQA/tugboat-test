@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mediocre fixture</title>
+  <script>
+    var y = 0;
+    for (var i = 0; i < 8e6; i++) { y += i % 5; }
+  </script>
+  <style>
+    body { font-family: sans-serif; color: #555; background: #fafafa; }
+    .muted { color: #bbb; }
+  </style>
+</head>
+<body>
+  <h1>Mediocre page</h1>
+  <p class="muted">Thin content and mild main-thread work for tolerance boundary tests.</p>
+  <img src="/logo.svg" width="640" height="640">
+  <form>
+    <input type="text" name="q">
+    <button>Search</button>
+  </form>
+</body>
+</html>

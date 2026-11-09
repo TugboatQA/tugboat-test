@@ -1,7 +1,21 @@
-body {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
+:root {
+  color-scheme: light;
+  --ink: #102a43;
+  --bg: #f0f4f8;
+  --accent: #0b6e4f;
 }
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+header, main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+h1 { font-size: 1.75rem; }
+a { color: var(--accent); }
+img { display: block; margin: 1rem 0; }
