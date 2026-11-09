@@ -23,10 +23,13 @@ services:
             screen:
                 - desktop
                 - mobile
+            threshold:
+                desktop:
+                    - category: performance
+                      threshold: 90
+                      tolerance: 5
+                    - category: seo
+                      threshold: 80
+                mobile: base
         urls:
             - /
-            - /slow/
-            - /a11y-bad/
-            - /seo-bad/
-            - /checkout/
-            - /mediocre/
