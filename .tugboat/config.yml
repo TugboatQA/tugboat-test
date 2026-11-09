@@ -26,6 +26,7 @@ services:
         aliases: b
         http: true
         https: false
+        expose: 80
         commands:
             init:
                 - echo "********** INIT **********"
