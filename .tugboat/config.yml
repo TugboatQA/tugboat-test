@@ -1,7 +1,10 @@
 services:
     apache:
+        default: true
         image: tugboatqa/httpd
-        aliases: test
+        aliases: 
+            - tub
+            - goat
         http: true
         https: false
         commands:
@@ -10,7 +13,7 @@ services:
                 - apt-get update
                 - apt-get install bsd-mailx
                 - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+                - ln -snf "${TUGBOAT_ROOT}/apache" "${DOCROOT}"
             update:
                 - echo "********** UPDATE **********"
             build:
@@ -18,3 +21,39 @@ services:
                 - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
                 - cat .tugboat/tugboat.txt
+        urls:
+            :default:
+                - /
+            goat:
+                - /index.html
+            tub:
+                - /tubgoat.html
+    ngnix:
+        image: tugboatqa/nginx
+        aliases:
+            - bathtubs
+            - splithooves
+        http: true
+        https: false
+        checkout: true
+        expose: 80
+        commands:
+            init:
+                - echo "********** INIT **********"
+                - apt-get update
+                - apt-get install bsd-mailx
+                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+                - ln -snf "${TUGBOAT_ROOT}/apache" "${DOCROOT}"
+            update:
+                - echo "********** UPDATE **********"
+            build:
+                - echo "********** BUILD **********"
+        urls:
+            :default:
+                - /
+            bathtubs:
+                - /index.html
+                - /tubgoat.html
+        visualdiff:
+            enabled: true
+            threshold: 90
