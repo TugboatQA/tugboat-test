@@ -15,7 +15,8 @@ services:
                 - cat .tugboat/tugboat.txt
         lighthouse:
             enabled: true
-            threshold: 95
-            tolerance: 0
+            threshold:
+                threshold: 95
+                tolerance: 0
         urls:
             - /slow/
