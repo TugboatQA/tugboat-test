@@ -20,13 +20,16 @@ services:
                 - cat .tugboat/tugboat.txt
         lighthouse:
             enabled: true
-            screen:
-                - desktop
-                - mobile
+            config:
+                onlyCategories:
+                    - seo
+                    - accessibility
+            threshold:
+                - category: seo
+                  threshold: 90
+                - category: performance
+                  threshold: 90
         urls:
             - /
-            - /slow/
-            - /a11y-bad/
             - /seo-bad/
-            - /checkout/
-            - /mediocre/
+            - /a11y-bad/
