@@ -21,6 +21,7 @@ services:
         lighthouse:
             enabled: true
             config:
+                extends: lighthouse:default
                 settings:
                     onlyCategories:
                         - seo
