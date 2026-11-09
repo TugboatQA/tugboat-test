@@ -25,6 +25,7 @@ services:
         image: tugboatqa/httpd
         http: true
         https: false
+        expose: 80
         commands:
             init:
                 - echo "********** INIT **********"
