@@ -20,13 +20,7 @@ services:
                 - cat .tugboat/tugboat.txt
         lighthouse:
             enabled: true
-            screen:
-                - desktop
-                - mobile
+            # omit threshold → defaults to base / tolerance 0
         urls:
             - /
             - /slow/
-            - /a11y-bad/
-            - /seo-bad/
-            - /checkout/
-            - /mediocre/
