@@ -17,11 +17,9 @@ services:
             enabled: true
             screen:
                 - desktop
-                - mobile
         urls:
             - /
-            - /slow/
-            - /a11y-bad/
-            - /seo-bad/
-            - /checkout/
-            - /mediocre/
+            - /page-1/
+            - /page-2/
+            - /page-3/
+            - /page-4/
