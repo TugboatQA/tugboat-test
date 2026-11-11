@@ -17,6 +17,7 @@ services:
             enabled: true
             screen:
                 - desktop
+            # omit threshold → defaults to compare against base
         urls:
             - /
             - /page-1/
