@@ -1,20 +1,38 @@
 services:
-    apache:
+    web-a:
+        default: true
         image: tugboatqa/httpd
-        aliases: test
         http: true
         https: false
         commands:
             init:
-                - echo "********** INIT **********"
-                - apt-get update
-                - apt-get install bsd-mailx
-                - rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+                - echo "********** INIT web-a **********"
                 - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
             update:
-                - echo "********** UPDATE **********"
+                - echo "********** UPDATE web-a **********"
             build:
-                - echo "********** BUILD **********"
-                - cat .tugboat/tugboat.txt | mail -s "[1] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt | mail -s "[2] Tugboat Preview ${TUGBOAT_PREVIEW_ID}" tugboat@example.com
-                - cat .tugboat/tugboat.txt
+                - echo "********** BUILD web-a **********"
+        urls:
+            - /
+        visualdiff:
+            enabled: true
+            threshold: 90
+
+    web-b:
+        image: tugboatqa/httpd
+        http: true
+        https: false
+        expose: 80
+        commands:
+            init:
+                - echo "********** INIT web-b **********"
+                - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+            update:
+                - echo "********** UPDATE web-b **********"
+            build:
+                - echo "********** BUILD web-b **********"
+        urls:
+            - /
+        visualdiff:
+            enabled: true
+            threshold: 90
